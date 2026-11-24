@@ -156,12 +156,14 @@ func New(ctx context.Context, domain string, options ...Option) (*Authentication
 		return nil, err
 	}
 
+	httpClient := *http.DefaultClient // Clone to avoid modifying the global http.DefaultClient.
+
 	a := &Authentication{
 		url:               u,
 		basePath:          "",
 		debug:             false,
-		http:              http.DefaultClient,
-		auth0ClientInfo:   client.DefaultAuth0ClientInfo,
+		http:              &httpClient,
+		auth0ClientInfo:   client.DefaultAuth0ClientInfo(),
 		idTokenSigningAlg: "RS256",
 		retryStrategy:     client.DefaultRetryOptions,
 	}

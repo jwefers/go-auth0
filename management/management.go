@@ -177,7 +177,7 @@ func New(domain string, options ...Option) (*Management, error) {
 		userAgent:       client.UserAgent,
 		debug:           false,
 		http:            http.DefaultClient,
-		auth0ClientInfo: client.DefaultAuth0ClientInfo,
+		auth0ClientInfo: client.DefaultAuth0ClientInfo(),
 		retryStrategy:   client.DefaultRetryOptions,
 	}
 
